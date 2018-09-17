@@ -1,2 +1,2 @@
 # vigo-php
-A micro PSR7, PSR15, Pimple php application. 
+A micro php application based on league/route. 
