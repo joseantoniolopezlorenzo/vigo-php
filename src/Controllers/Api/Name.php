@@ -7,15 +7,11 @@ use Vigo\App;
 
 class Name extends App
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
+    
     public function __invoke(ServerRequestInterface $request, array $args)
     {
         $name            = $args['name'];
-        $this->c['data'] = [
+        $data = [
             [
                 'autor' => $name,
                 'api'   => [
@@ -25,7 +21,7 @@ class Name extends App
 
             ],
         ];
-        $this->c['code'] = 200;
-        return $this->c['jsonResponse'];
+        $code = 200;
+        return $this->jsonResponse($data, $code);
     }
 }
