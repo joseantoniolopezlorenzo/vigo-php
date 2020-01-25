@@ -7,7 +7,6 @@ use Vigo\App;
 
 class Home extends App
 {
-    
     public function __invoke(ServerRequestInterface $request)
     {
         $template = 'pages::home';

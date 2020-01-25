@@ -2,25 +2,23 @@
 
 namespace Vigo;
 
-use Vigo\AppInterface;
-use League\Plates\Engine;
-use League\Route\Http\Exception\NotFoundException;
-use League\Route\Router;
 use Pimple\Container;
-use Zend\Diactoros\Response\HtmlResponse;
-use Zend\Diactoros\Response\JsonResponse;
+use League\Plates\Engine;
+use League\Route\Router;
+use League\Route\Http\Exception\NotFoundException;
 use Zend\Diactoros\ServerRequestFactory;
 use Zend\Diactoros\ServerRequest;
+use Zend\Diactoros\Response\HtmlResponse;
+use Zend\Diactoros\Response\JsonResponse;
 use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
 
-class App 
+class App
 {
     public $c;
 
     public function __construct()
     {
         $this->c = new Container;
-       
         $this->c['plates'] = function (Container $c): Engine {
             $plates = new Engine(DIR_VIEWS);
             $plates->addFolder('pages', DIR_VIEWS . '/pages');
@@ -44,7 +42,6 @@ class App
         $this->c['router'] = function (Container $c): Router {
             return new Router;
         };
-        
     }
 
     public function router()
@@ -52,13 +49,13 @@ class App
         return $this->c['router'];
     }
 
-    protected function htmlResponse($template, $dataTemplate)
+    protected function htmlResponse($template, $dataTemplate): HtmlResponse
     {
         $htmlContent = $this->c['plates']->render($template, $dataTemplate);
         return new HtmlResponse($htmlContent);
     }
 
-    protected function jsonResponse($data, $code)
+    protected function jsonResponse($data, $code): JsonResponse
     {
         return new JsonResponse(
             $data,
@@ -67,7 +64,7 @@ class App
         );
     }
 
-    public function send()
+    public function sendResponse()
     {
         try {
             $response = $this->c['router']->dispatch($this->c['request']);

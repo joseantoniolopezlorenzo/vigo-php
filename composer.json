@@ -1,6 +1,6 @@
 {
-  "name": "Php-Vigo",
-  "description": "",
+  "name": "php-vigo",
+  "description": "Php microframework",
   "type": "project",
   "authors": [
     {
@@ -10,11 +10,11 @@
   ],
   "require": {
     "league/route": "^4.0",
-    "zendframework/zend-diactoros": "^1.8",
-    "zendframework/zend-httphandlerrunner": "^1.0",
     "league/plates": "^3.3",
     "vlucas/phpdotenv": "^2.5",
-    "pimple/pimple": "^3.0"
+    "pimple/pimple": "^3.0",
+    "laminas/laminas-diactoros": "^2.2",
+    "laminas/laminas-httphandlerrunner": "^1.1"
   },
   "autoload": {
     "psr-4": {

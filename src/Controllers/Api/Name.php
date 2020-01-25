@@ -7,7 +7,6 @@ use Vigo\App;
 
 class Name extends App
 {
-    
     public function __invoke(ServerRequestInterface $request, array $args)
     {
         $name            = $args['name'];
